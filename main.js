@@ -4,6 +4,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── EmailJS INIT ───────────────────────────────────────── */
+  emailjs.init("ZoFZsfn0Noii4ja_q");
+
   /* ── Active nav link ──────────────────────────────────────── */
   const currentPage = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(link => {
@@ -26,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── Skill bar animation (Intersection Observer) ─────────── */
+  /* ── Skill bar animation ─────────────────────────────────── */
   const bars = document.querySelectorAll('.skill-bar-fill');
   if (bars.length) {
     const barObserver = new IntersectionObserver(entries => {
@@ -86,19 +89,34 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(c => countObserver.observe(c));
   }
 
-  /* ── Contact form (demo) ─────────────────────────────────── */
+  /* ── Contact form (EmailJS FULL) ─────────────────────────── */
   const form    = document.getElementById('contact-form');
   const success = document.getElementById('form-success');
+
   if (form) {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
+
       const btn = form.querySelector('button[type="submit"]');
       btn.textContent = 'Gonderiliyor...';
       btn.disabled = true;
-      setTimeout(() => {
+
+      emailjs.send("service_e2as6hn", "template_18h3pai", {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value
+      })
+      .then(function() {
         form.style.display = 'none';
         success.style.display = 'block';
-      }, 1200);
+      })
+      .catch(function(error) {
+        alert("Mail gönderilemedi ❌");
+        console.log(error);
+        btn.textContent = 'Gönder';
+        btn.disabled = false;
+      });
     });
   }
 

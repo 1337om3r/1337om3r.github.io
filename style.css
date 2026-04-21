@@ -1,8 +1,3 @@
-/* ============================================================
-   PORTFOLIO — style.css
-   Theme: Dark & Vivid — geometric brutalism with cyan/magenta accents
-   ============================================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
 
 /* ── Variables ─────────────────────────────────────────────── */
@@ -257,8 +252,9 @@ section, .page-section {
   to   { opacity: 1; transform: translateY(0); }
 }
 .fade-up {
-  animation: fadeUp 0.6s ease forwards;
-  opacity: 0;
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 .fade-up:nth-child(1) { animation-delay: 0.0s; }
 .fade-up:nth-child(2) { animation-delay: 0.1s; }
@@ -358,7 +354,7 @@ section, .page-section {
   overflow: hidden;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 0.6rem 0;
+  padding: 0.8rem 0;
 }
 .ticker {
   display: flex;
@@ -966,7 +962,7 @@ footer {
   .contact-layout { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
 
-  .hero-name { font-size: clamp(2.5rem, 12vw, 5rem); }
+  .hero-name { font-size: clamp(3.5rem, 15vw, 7rem); }
   .ticker-wrap { display: none; }
 
   .about-photo-wrap { max-width: 280px; }
